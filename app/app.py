@@ -8,7 +8,7 @@ def build_app(config):
     
     app.config['DEBUG'] = config.DEBUG
     app.config['ENV'] = config.ENV
-    
+        
     app.register_blueprint(hello_routes,url_prefix=config.URL_PREFIX)
     app.register_blueprint(movies_routes,url_prefix=config.URL_PREFIX)
     
