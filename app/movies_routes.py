@@ -4,10 +4,10 @@ from datetime import datetime
 from datetime import date
 from app.components.tmdb_request import searchMovies, searchActor, searchCastMovies
 
-MoviesController = Blueprint('moviesController',__name__)
+movies_routes = Blueprint('movies_routes',__name__)
 
 
-@MoviesController.route('/movies/latest',methods=['GET'])
+@movies_routes.route('/movies/latest',methods=['GET'])
 def latest_movies():
       
     latest_movies = searchMovies(date.today().year,date.today().strftime('%Y-%m-%d')) 
@@ -25,7 +25,7 @@ def latest_movies():
     return jsonify({'payload':'10 latest movies from current year',
                          'data': sorted_response})
 
-@MoviesController.route('/movies/actors-movies',methods=['POST',])
+@movies_routes.route('/movies/actors-movies',methods=['POST',])
 def actors_latest_movies():
     
     if (request.json == None) or 'actors_list' not in request.json.keys() or len(request.json.keys())>1:
@@ -49,5 +49,3 @@ def actors_latest_movies():
             actors_movies[actor_name] = "Could not find any matching ID for this actor"
 
     return jsonify({'data':actors_movies})
-        
-    
