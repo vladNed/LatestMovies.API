@@ -1,13 +1,12 @@
 import os
 import tempfile
 import pytest
-from app.app import build_app 
+from main import app
 from app import DevelopmentConfig
 config = DevelopmentConfig()
 
 @pytest.fixture
 def client():
-    app = build_app(config)
     
     app.config['TESTING'] = True
     
